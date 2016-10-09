@@ -13,7 +13,7 @@ class TestGuest < MiniTest::Test
 
 
   def test_guest_has_name
-    assert_equal("Jonny", @guest2.name)
+    assert_equal("Jonny", @guest2.guest_name)
   end
 
   def test_guest_has_fav_song

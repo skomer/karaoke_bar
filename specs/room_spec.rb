@@ -24,27 +24,33 @@ class TestRoom < MiniTest::Test
     @song9 = Song.new("Get Back", "The Beatles")
     @song10 = Song.new("Paperback Writer", "The Beatles")
 
-    @hendrix_room = Room.new("Hendrix Room", nil, nil, 6, 5.00)
-    @simone_room = Room.new("Simone Room", nil, nil, 3, 9.64)
-    @beatles_room = Room.new("Beatles Room", nil, nil, 8, 0.44)
-
     @guests = [@guest1, @guest2, @guest3, @guest4]
 
-    @hendrix_playlist = [song1, song2, song3, song4]
-    @simone_playlist = [song5, song6, song7]
-    @beatles_playlist = [song8, song9, song10]
+    @hendrix_playlist = [@song1, @song2, @song3, @song4]
+    @simone_playlist = [@song5, @song6, @song7]
+    @beatles_playlist = [@song8, @song9, @song10]
+
+    @hendrix_room = Room.new("The Hendrix Room", @hendrix_playlist, @guests, 6, 5.00)
+    @simone_room = Room.new("The Simone Room", @simone_playlist, @guests, 3, 9.64)
+    @beatles_room = Room.new("The Beatles Room", @beatles_playlist, @guests, 8, 0.44)
 
   end
 
   def test_room_has_name
-    assert_equal("Hendrix Room", @hendrix_room.name)
+    assert_equal("The Hendrix Room", @hendrix_room.room_name)
   end
 
+  def test_guest_is_in_room
+    assert_equal("Guest(s) in The Beatles Room: Ruth, Jonny, Malcolm, Howie", @beatles_room.guests_in_room)
+  end
 
+  def test_guests_can_afford_fee
+    assert_equal("These guests may enter The Simone Room: Ruth, Jonny, Howie.\n These guests may not enter The Simone Room: Malcolm", @simone_room.guests_pay_fee)
+  end
 
-
-
-
+  def test_guests_pay_when_they_enter_room
+    skip
+  end
 
 
 
