@@ -1,0 +1,1 @@
+With testing, is the idea to write a test for every little thing a class or method has/can do? E.g. should I test that each and every class variable work?
