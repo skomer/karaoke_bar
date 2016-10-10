@@ -22,5 +22,4 @@ class TestSong
     assert_equal("Nina Simone", @song7.artist)
   end
 
-
 end

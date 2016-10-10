@@ -33,7 +33,6 @@ class TestRoom < MiniTest::Test
     @hendrix_room = Room.new("The Hendrix Room", @hendrix_playlist, @guests, 6, 5.00)
     @simone_room = Room.new("The Simone Room", @simone_playlist, @guests, 3, 9.64)
     @beatles_room = Room.new("The Beatles Room", @beatles_playlist, @guests, 8, 0.44)
-
   end
 
   def test_room_has_name
@@ -45,13 +44,17 @@ class TestRoom < MiniTest::Test
   end
 
   def test_guests_can_afford_fee
-    assert_equal("These guests may enter The Simone Room: Ruth, Jonny, Howie.\n These guests may not enter The Simone Room: Malcolm", @simone_room.guests_pay_fee)
+    guest_objects_can_pay = @simone_room.guests_can_afford_fee
+    guests_can_pay = guest_objects_can_pay.map { |guest| guest.guest_name }
+    assert_equal(["Ruth", "Jonny", "Howie"], guests_can_pay)
   end
 
   def test_guests_pay_when_they_enter_room
-    skip
+    guest_objects_have_paid = @simone_room.guests_pay_fee
+    ruth = guest_objects_have_paid.select { |guest| guest.guest_name == "Ruth" }
+    ruths_money = ruth.money
+    assert_equal(0.36, ruths_money)
+    assert_equal(28.92, @fee_takings)
   end
-
-
 
 end

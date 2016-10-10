@@ -20,7 +20,4 @@ class TestGuest < MiniTest::Test
     assert_equal("Feeling Good", @guest3.fav_song)
   end
 
-
-
-
-  end
+end
